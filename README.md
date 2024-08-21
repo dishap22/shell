@@ -3,7 +3,7 @@
 
 # Description
 - `config.c` & `config.h`: define and configure system variables like root directory, system name, username, etc.
-- `headers.h`: maintains list of all C standard and custom libraries used in this shell
+- `headers.h`: maintains list of all C standard and custom headers used in this shell
 - `main.c`: main file of the program, handles interaction and program flow
 - `prompt.c` & `prompt.h`: print prompt message based on directory 
 

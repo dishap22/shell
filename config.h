@@ -4,6 +4,7 @@
 #define PATH_MAX 4096
 #define SYSTEMNAME_MAX 4096
 #define USERNAME_MAX 4096
+#define CHARACTER_MAX 4096
 
 #define PURPLE_COLOR "\033[1;35m"  
 #define BLUE_COLOR "\033[1;34m"      
