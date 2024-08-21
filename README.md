@@ -6,7 +6,8 @@
 - `headers.h`: maintains list of all C standard and custom headers used in this shell
 - `main.c`: main file of the program, handles interaction and program flow
 - `prompt.c` & `prompt.h`: print prompt message based on directory 
-
+- `execute.c` & `execute.h`: further tokenizes each line into commands and their respective arguments. calls required functions accordingly
+-  `hop.c` & `hop.h`: implements functionality to change directories
 
 
 # Assumptions
