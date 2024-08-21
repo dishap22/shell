@@ -1,0 +1,31 @@
+// prompt.c
+#include "headers.h"
+
+int prompt() {
+    char cwd[PATH_MAX];
+    char *relative_directory;
+
+    // TODO: error message handling here too
+    if (getcwd(cwd, sizeof(cwd)) == NULL) {
+        printf("Error extracting current directory");
+        return 1;
+    }
+  
+    // TODO: Come back to this after implementing hop
+    if (strncmp(cwd, homedirectory, strlen(homedirectory)) == 0) {
+        if (strlen(cwd) == strlen(homedirectory)) {
+            relative_directory = "~";
+        } else {
+            relative_directory = cwd + strlen(homedirectory) + 1; // Skip over the home directory path
+            static char temp[PATH_MAX];
+            snprintf(temp, sizeof(temp), "~%s", relative_directory);
+            relative_directory = temp;
+        }
+    } else {
+        relative_directory = cwd;
+    }
+
+    printf(PURPLE_COLOR"<%s@%s:" BLUE_COLOR "%s" PURPLE_COLOR "> \033[0m", username, systemname, relative_directory);
+    fflush(stdout);
+    return 0;
+}
