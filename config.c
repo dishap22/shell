@@ -4,6 +4,8 @@
 char username[USERNAME_MAX];
 char systemname[SYSTEMNAME_MAX];
 char homedirectory[PATH_MAX];
+char previousdirectory[CHARACTER_MAX];
+char currentdirectory[CHARACTER_MAX];
 
 int configure() {
     // TODO: Make error function and pass errors as args and print them in error color
@@ -21,6 +23,8 @@ int configure() {
         printf("Error extracting home directory\n");
         return 1;
     }
+
+    strncpy(currentdirectory, homedirectory, sizeof(currentdirectory));
 
     return 0;
 }

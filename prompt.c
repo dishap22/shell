@@ -7,18 +7,17 @@ int prompt() {
 
     // TODO: error message handling here too
     if (getcwd(cwd, sizeof(cwd)) == NULL) {
-        printf("Error extracting current directory");
+        printf("Error extracting current directory\n");
         return 1;
     }
   
-    // TODO: Come back to this after implementing hop
     if (strncmp(cwd, homedirectory, strlen(homedirectory)) == 0) {
         if (strlen(cwd) == strlen(homedirectory)) {
             relative_directory = "~";
         } else {
             relative_directory = cwd + strlen(homedirectory) + 1; // Skip over the home directory path
             static char temp[PATH_MAX];
-            snprintf(temp, sizeof(temp), "~%s", relative_directory);
+            snprintf(temp, sizeof(temp), "~/%s", relative_directory);
             relative_directory = temp;
         }
     } else {

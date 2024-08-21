@@ -15,6 +15,8 @@
 extern char username[PATH_MAX];
 extern char systemname[SYSTEMNAME_MAX];
 extern char homedirectory[USERNAME_MAX];
+extern char previousdirectory[CHARACTER_MAX];
+extern char currentdirectory[CHARACTER_MAX];
 
 int configure();
 

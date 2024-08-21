@@ -10,5 +10,7 @@
 // Custom Headers
 #include "prompt.h"
 #include "config.h"
+#include "execute.h"
+#include "hop.h"
 
 #endif
