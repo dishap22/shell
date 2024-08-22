@@ -12,5 +12,6 @@
 #include "config.h"
 #include "execute.h"
 #include "hop.h"
+#include "reveal.h"
 
 #endif

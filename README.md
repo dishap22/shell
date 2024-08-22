@@ -8,7 +8,7 @@
 - `prompt.c` & `prompt.h`: print prompt message based on directory 
 - `execute.c` & `execute.h`: further tokenizes each line into commands and their respective arguments. calls required functions accordingly
 -  `hop.c` & `hop.h`: implements functionality to change directories
-
+- `reveal.c` & `reveal.h`: implements functionality to show contents of a directory
 
 # Assumptions
 - Max size of any input is 4096 characters

@@ -24,7 +24,7 @@ int prompt() {
         relative_directory = cwd;
     }
 
-    printf(PURPLE_COLOR"<%s@%s:" BLUE_COLOR "%s" PURPLE_COLOR "> \033[0m", username, systemname, relative_directory);
+    printf(PURPLE_COLOR"<%s@%s:" BLUE_COLOR "%s" PURPLE_COLOR "> " RESET_COLOR, username, systemname, relative_directory);
     fflush(stdout);
     return 0;
 }

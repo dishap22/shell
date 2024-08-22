@@ -50,18 +50,10 @@ int main()
         tokens[i] = NULL; 
         background_flag[i] = -1; 
 
-        //  Finished tokenizing, now cleaning spaces/tabs and executing 
+        //  Finished tokenizing, now executing 
         for (int j = 0; tokens[j] != NULL; j++) {
-            // Remove trailing and leading whitespaces and tabs
-            char *cmd = tokens[j];
-            while (*cmd == ' ' || *cmd == '\t') cmd++;
-            char *end = cmd + strlen(cmd) - 1;
-            while (end > cmd && (*end == ' ' || *end == '\t')) end--;
-            *(end + 1) = '\0';
-
             // TODO: implement execution & print error if erroneous
-            execute_command(cmd, background_flag[j]);
-            // printf("Token: '%s' Background flag: %d\n", cmd, background_flag[j]);
+            execute_command(tokens[j], background_flag[j]);
             free(tokens[j]);
         }
         free(tempInput);

@@ -2,14 +2,20 @@
 
 // TODO: error printing
 void hop(char **args) {
+    char new_path[PATH_MAX * 2];
+    char temp_cwd[PATH_MAX];
+
+    if (getcwd(temp_cwd, sizeof(temp_cwd)) == NULL) {
+        printf("Failed to get current directory");
+        return;
+    }
+
     if (args[0] == NULL) {
         if (chdir(homedirectory) != 0) {
             printf("Error changing directory\n");
         }
     } else {
         for (int i = 0; args[i] != NULL; i++) {
-            char new_path[PATH_MAX * 2];
-
             if (strcmp(args[i], "~") == 0) {
                 if (chdir(homedirectory) != 0) {
                     printf("Error changing directory\n");
@@ -19,10 +25,7 @@ void hop(char **args) {
                 if (chdir(previousdirectory) != 0) {
                     printf("Error changing directory\n");
                 }
-            } 
-            else if (strcmp(args[i], ".") == 0 || strcmp(args[i], "../") == 0) {
-                // Do nothing
-            } 
+            }
             else if (strcmp(args[i], "..") == 0) {
                 if (chdir("..") != 0) {
                     printf("Error changing directory\n");
@@ -40,12 +43,14 @@ void hop(char **args) {
                     printf("Error changing directory");
                 }
             }
-
-            strncpy(previousdirectory, currentdirectory, sizeof(previousdirectory));
-            if (getcwd(currentdirectory, sizeof(currentdirectory)) == NULL) {
-                printf("Failed to get update directory");
-            }
-            printf("%s\n", currentdirectory);
         }
     }
+
+    if (getcwd(currentdirectory, sizeof(currentdirectory)) == NULL) {
+        printf("Failed to get update directory");
+        return;
+    }
+
+    if (strcmp(temp_cwd, currentdirectory) != 0) strncpy(previousdirectory, temp_cwd, sizeof(previousdirectory));
+    printf("%s\n", currentdirectory);
 }

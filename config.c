@@ -25,6 +25,7 @@ int configure() {
     }
 
     strncpy(currentdirectory, homedirectory, sizeof(currentdirectory));
+    strncpy(previousdirectory, "", sizeof(previousdirectory));
 
     return 0;
 }
