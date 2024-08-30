@@ -1,13 +1,12 @@
-// prompt.c
 #include "headers.h"
 
-int prompt() {
+int prompt(double time, const char *prevCommand) {
     char cwd[PATH_MAX];
     char *relative_directory;
+    char commandEdited[PATH_MAX];
 
-    // TODO: error message handling here too
     if (getcwd(cwd, sizeof(cwd)) == NULL) {
-        printf("Error extracting current directory\n");
+        printf(ERROR_COLOR "Error extracting current directory\n" RESET_COLOR);
         return 1;
     }
   
@@ -24,7 +23,20 @@ int prompt() {
         relative_directory = cwd;
     }
 
-    printf(PURPLE_COLOR"<%s@%s:" BLUE_COLOR "%s" PURPLE_COLOR "> " RESET_COLOR, username, systemname, relative_directory);
+    if (prevCommand && prevCommand[strlen(prevCommand) - 1] == ';') {
+        snprintf(commandEdited, sizeof(commandEdited), "%s", prevCommand);
+        commandEdited[strlen(commandEdited) - 1] = '\0';
+    } else {
+        snprintf(commandEdited, sizeof(commandEdited), "%s", prevCommand);
+    }
+
+
+    if (time > 2) {
+        printf(PURPLE_COLOR "<%s@%s:" BLUE_COLOR "%s" PURPLE_COLOR " %s : %lds> " RESET_COLOR, username, systemname, relative_directory, commandEdited, (long)time);
+    } else {
+        printf(PURPLE_COLOR "<%s@%s:" BLUE_COLOR "%s" PURPLE_COLOR "> " RESET_COLOR, username, systemname, relative_directory);
+    }
+
     fflush(stdout);
     return 0;
 }

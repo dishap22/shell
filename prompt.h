@@ -1,6 +1,6 @@
 #ifndef __PROMPT_H
 #define __PROMPT_H
 
-int prompt();
+int prompt(double time, const char *prevCommand);
 
 #endif
