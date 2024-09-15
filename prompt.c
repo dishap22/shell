@@ -36,7 +36,6 @@ int prompt(double time, const char *prevCommand) {
     } else {
         printf(PURPLE_COLOR "<%s@%s:" BLUE_COLOR "%s" PURPLE_COLOR "> " RESET_COLOR, username, systemname, relative_directory);
     }
-
     fflush(stdout);
     return 0;
 }

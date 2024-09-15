@@ -2,16 +2,21 @@
 # mini-project-1-template
 
 # Description
+- `activities.c` & `activities.h`: sorts and prints background processes
 - `config.c` & `config.h`: define and configure system variables like root directory, system name, username, etc. and handle sigchld from background processes terminating
 - `execute.c` & `execute.h`: further tokenizes each line into commands and their respective arguments. calls required functions accordingly
 - `headers.h`: maintains list of all C standard and custom headers used in this shell
 -  `hop.c` & `hop.h`: implements functionality to change directories
+- `iman.c` & `iman.h`: uses sockets to retrieve man pages and prints them without headers
 - `log.c` & `log.h`: Create/purge/write to/print from log file
 - `main.c`: main file of the program, handles interaction and program flow
+- `neonate.c` & `neonate.h`: implements neonate function to repeatedly get and print PID of most recent process on system, given time argument
+- `ping.c` & `ping.h`: contains ping command to send signals to process, fg to hand control to a bg process, bg to resume a bg process and helper functions to add/remove bg processes and update the process state
 - `proclore.c` & `proclore.h`: Gets details of a process by PID and prints them
 - `prompt.c` & `prompt.h`: print prompt message based on directory 
 - `reveal.c` & `reveal.h`: implements functionality to show contents of a directory
 - `seek.c` & `seek.h`: implements funcionality to search for a specific file/directory
+- `signals.c` & `signals.h`: signal handlers for sigchld, sigstp, sigint
 
 
 # Assumptions
@@ -41,7 +46,19 @@ sleep exited normally (46578)
 - If an erroneous background command is obtained, we print `Command not found` error [Mentioned in README as specified in Doubts Document Spec 6 Q6]
 - Unit for virtual memory used in proclore definition is kB [Mentioned in README as specified in Doubts Document Spec 7 Q6]
 - If a file extension is given in search parameter then seek explicitly looks to match this, if no extension given then it ignores extension and gives all possible results [Mentioned in README as specified in Doubts Document Spec 8 Q1 & 6]
-
+- Alias for .myshrc is follows the keyword 'alias'
+- Comments will be on new lines in .myshrc
+- log file stores alias and doesn't store any commands containing log in the alias
+- In case of an erroroneous command with redirection it is sent to the changed output destination as per the redirection
+- Command like `hop .. | wc` hops to parent directory
+- Piping is implemented sequentially
+- & only applied to command immediately preceding it in a pipe, and therefore can only apply to end of pipe (any other case would result in & | which is given as an error)
+- Max processes assumed to be 4096
+- Max aliases assumed to be 4096
+- Upon Ctrl + D no exit status printed
+- Neonate prints error if missing args
 
 # AI Usage:
 Screenshots of commands documented in [Screenshot PDF - Part A](./ChatGPTCommands_PartA.pdf)
+
+Screenshots of commands documented in [Screenshot PDF - Part B](./ChatGPTCommands_PartB.pdf)

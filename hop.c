@@ -74,8 +74,22 @@ int hop(char **args) {
         return -1;
     }
 
+    char temp_file_path[PATH_MAX * 2];
+    snprintf(temp_file_path, sizeof(temp_file_path), "%s/temp.txt", homedirectory);
     // if prev directory has changed then update it
-    if (strcmp(temp_cwd, currentdirectory) != 0) strncpy(previousdirectory, temp_cwd, sizeof(previousdirectory));
+    if (strcmp(temp_cwd, currentdirectory) != 0) {
+        strncpy(previousdirectory, temp_cwd, sizeof(previousdirectory));
+
+        FILE *temp_file = fopen(temp_file_path, "w");
+        if (temp_file) {
+            fprintf(temp_file, "%s\n%s", currentdirectory, previousdirectory);
+            fclose(temp_file);
+        } else {
+            printf(ERROR_COLOR "Failed to create temporary file\n" RESET_COLOR);
+            return -1;
+        }
+    }
+
     printf("%s\n", currentdirectory);
     return 0;
 }

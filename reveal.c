@@ -48,6 +48,18 @@ int entryComparision(const void *a, const void *b) {
     return strcasecmp((*entry_a)->d_name, (*entry_b)->d_name);
 }
 
+int strcasecmp(const char *s1, const char *s2) {
+    while (*s1 && *s2) {
+        int diff = tolower((unsigned char)*s1) - tolower((unsigned char)*s2);
+        if (diff != 0) {
+            return diff;
+        }
+        s1++;
+        s2++;
+    }
+    return tolower((unsigned char)*s1) - tolower((unsigned char)*s2);
+}
+
 // Check if file or directory
 int handle_path(char *path, const char *currentdirectory, const char *homedirectory, const char *previousdirectory) {
     if (strcmp(path, "~") == 0) {

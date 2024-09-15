@@ -76,6 +76,7 @@ int printLog() {
     for (int i = size-1; i >= 0; i--) {
         printf("%s\n", logHistory[i]);
     }
+    return 0;
 }
 
 // Clear log file
@@ -148,4 +149,5 @@ int logExecute(int index) {
         free(tokens[j]);
     }
     free(tempInput);
+    return 0;
 }
